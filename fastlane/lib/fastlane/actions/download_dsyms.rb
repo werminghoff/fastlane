@@ -46,6 +46,11 @@ module Fastlane
             build_number = latest_candidate_build.build_version
           end
         end
+        
+        # Remove leading zeros from version string (eg. 1.02 -> 1.2)
+        if version
+          version = version.split(".").map{ |p| p.to_i }.join(".")
+        end
 
         # Make sure output_directory has a slash on the end
         if output_directory && !output_directory.end_with?('/')
